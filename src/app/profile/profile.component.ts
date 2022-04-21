@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { User } from '../user';
 
@@ -9,7 +9,20 @@ import { User } from '../user';
 })
 export class ProfileComponent implements OnInit {
 
-  user:User = new User('','','',0,0)
+
+  user:any;
+  username:any = 'hello';
+
+  submitUser(){
+
+    
+    
+  }
+
+
+
+
+
 
   constructor(private http:HttpClient) { }
 
@@ -22,6 +35,13 @@ export class ProfileComponent implements OnInit {
       id:number;
       public_repos:number;
     }
+    this.http.get<ApiResponse>(`https://api.github.com/users/${this.username}`).subscribe(data=>{
+      this.user = new User(data.login,
+        data.avatar_url,
+        data.url,
+        data.id,
+        data.public_repos)
+    })
   }
 
 }
