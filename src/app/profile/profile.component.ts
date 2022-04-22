@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { User } from '../user';
+import { GitfetchService } from '../services/gitfetch.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,28 +22,20 @@ export class ProfileComponent implements OnInit {
 
 
 
-  constructor(private http:HttpClient) { }
+  constructor( private gitfetchService:GitfetchService) { 
+    this.user = this.gitfetchService.gitFetch()
+    this.gitfetchService = this.gitfetchService;
+  }
 
   ngOnInit(): void {
 
-    interface ApiResponse{
-      login:string;
-      avatar_url:string;
-      url:string;
-      id:number;
-      public_repos:number;
-    }
-    this.http.get<ApiResponse>(`https://api.github.com/users/${this.username}`).subscribe(data=>{
-      this.user = new User(data.login,
-        data.avatar_url,
-        data.url,
-        data.id,
-        data.public_repos)
-    }, err =>{
-      this.user = new User('Ahonoryoshi', '#', '#',1234567,7654321);
-      console.log("An error occured");
-  });
-    ;
+    this.gitfetchService.gitFetch()
+    this.user = this.gitfetchService.user
+
+    
+
+    
+
 
   }
 
