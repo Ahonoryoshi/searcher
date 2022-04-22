@@ -12,12 +12,9 @@ export class ProfileComponent implements OnInit {
 
   user:any;
   username:any = 'hello';
+  submitUser:any;
 
-  submitUser(){
-
-    
-    
-  }
+ 
 
 
 
@@ -41,7 +38,12 @@ export class ProfileComponent implements OnInit {
         data.url,
         data.id,
         data.public_repos)
-    })
+    }, err =>{
+      this.user = new User('Ahonoryoshi', '#', '#',1234567,7654321);
+      console.log("An error occured");
+  });
+    ;
+
   }
 
 }
