@@ -55,7 +55,9 @@
       <h5>{{myrepo.name}}</h5>
       <ul>
         <li> <em>created: </em>{{myrepo.created_at | date}}</li>
+        <li> <em>{{myrepo.created_at | time}}</em></li>
         <li><em>Description:</em>{{myrepo.description}}</li>
+        
       </ul>
       <p> Click <a href="{{myrepo.html_url}}" target="_blank"> here </a>To visit {{myrepo.name}} repository</p> <br>
 
