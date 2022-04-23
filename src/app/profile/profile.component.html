@@ -1,17 +1,18 @@
 <div class="container content">
     <div class="card-conainer">
-        <form id="fom" #usernameForm="ngForm" (ngSubmit)="submitUser()">
-            <input id="username" [(ngModel)]="username" required  name="login" class="form-control" type="text">
+        <form id="fom" #usernameForm="ngForm" (ngSubmit)="ngOnInit()">
+            <input id="username" required  name="login" [(ngModel)]="username" class="form-control" type="text"><br>
+            <button type="submit">SUBMIT USER</button>
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card-container">
-                            <button class="form-control button4" type="submit">See Details</button>
+                            <button (click)="toggledetails()" class="form-control button4">See Details</button>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card-container">
-                            <button class="form-control button4">See repos</button>
+                            <button (click)="togglerepos()" class="form-control button4">See repos</button>
                         </div>
                     </div>
                 </div>
@@ -22,15 +23,15 @@
 
 </div>
 
-<div class="content">
-    <h2>Details</h2>
+<div *ngIf="showProfile" class="content" id="profits">
     <div class="container content">
+      <h2>DETAILS</h2>
         <div class="row">
             <div class="col-md-6">
                 <h5>{{user.login}}</h5>
                 <img src="{{user.avatar_url}}" alt="">
                 <br><br>
-                <h5>Click <a href="{{user.url}}">here</a> to see {{user.login}}'s github profile</h5>
+                <h5>Click <a href="https://github.com/{{user.login}}" target="_blank">here</a> to see {{user.login}}'s github profile</h5>
                 
                 <br> 
             </div>
@@ -46,9 +47,24 @@
         </div>
     </div>
     
-    
-    
-    
+</div>
+<div *ngIf="showRepos" class="content" id="reposits">
+  <h2>REPOSITORIES</h2>
+  <div class="container" id="repo-list">
+    <div id="repolist" class="content" *ngFor="let myrepo of myrepos">
+      <h5>{{myrepo.name}}</h5>
+      <ul>
+        <li> <em>created: </em>{{myrepo.created_at | date}}</li>
+        <li><em>Description:</em>{{myrepo.description}}</li>
+      </ul>
+      <p> Click <a href="{{myrepo.html_url}}" target="_blank"> here </a>To visit {{myrepo.name}} repository</p> <br>
+
+      <p>{{myrepo.html_url}}</p>
+      
+      
+    </div>
+    <br><hr>
+  </div> 
 </div>
 
 
@@ -68,6 +84,15 @@
 
 
 <style>
+  
+  #profits{
+    background-color: burlywood;
+
+  }
+
+  #repolist{
+    background-color: antiquewhite;
+  }
 
     h1,
     h2,

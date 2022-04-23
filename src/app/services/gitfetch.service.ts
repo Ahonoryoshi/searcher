@@ -8,15 +8,15 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class GitfetchService {
-  username:string = 'Hello'
+  //username:string = 'Hello'
   user:User = new User('','','',0,0);
-  apiUrl:string = `https://api.github.com/users/${this.username}`
+  apiUrl:string = `https://api.github.com/users/`
 
   
   constructor( private http:HttpClient) {
     this.user = new User('','','',0,0);
    }
-   gitFetch(){
+   gitFetch(username:any){
      interface ApiResponse {
       login:any;
       avatar_url:any;
@@ -25,7 +25,7 @@ export class GitfetchService {
       public_repos:any;
     }
     let promise = new Promise((resolve,reject)=>{
-      this.http.get<ApiResponse>(this.apiUrl).toPromise().then(response => {
+      this.http.get<ApiResponse>(this.apiUrl + `${username}`).toPromise().then(response => {
         this.user.login = response?.login;
         this.user.avatar_url = response?.avatar_url;
         this.user.url = response?.url;
@@ -35,7 +35,8 @@ export class GitfetchService {
         resolve(response)
       },
       error => {
-        this.username = "Ahonoryoshi"
+        //this.username = "Ahonoryoshi"
+        console.log('an error occurred')
 
         reject(error)
 
