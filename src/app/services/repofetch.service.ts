@@ -11,6 +11,8 @@ export class RepofetchService {
   repos:any;
   myrepos:any[] = [];
 
+  usernames:any[] = [];
+
   repo:Repo = new Repo('','',new Date(),'');
   repoUrl:string =`https://api.github.com/users/`
 
@@ -21,6 +23,7 @@ export class RepofetchService {
 
     interface ApiResponse{
       repos:Repo[];
+      
 
       name:any;
       bio:any;
@@ -39,6 +42,8 @@ export class RepofetchService {
         this.hello = response
         this.myrepos = []
 
+        
+
         //console.log(this.repo);
         console.log(this.hello[1].name);
 
@@ -50,8 +55,8 @@ export class RepofetchService {
         resolve(response)
       },
       error=>{
-        this.repo.name = "Never, never, never give up"
-        this.repo.bio = "Winston Churchill"
+        this.repo.name = "yes"
+        this.repo.bio = "yes"
 
         reject(error)
       })

@@ -7,12 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TimePipe } from './time.pipe';
+import { HisoryComponent } from './hisory/hisory.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    TimePipe
+    TimePipe,
+    HisoryComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

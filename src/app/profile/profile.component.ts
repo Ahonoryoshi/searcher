@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   submitUser:any;
   repo:any;
   myrepos:any;
-
+  usernames:any[]= [];
   showProfile:boolean = false;
   showRepos:boolean = false;
 
@@ -87,6 +87,8 @@ export class ProfileComponent implements OnInit {
     //this.showRepos =! this.showRepos;
 
     this.hello = [];
+    this.usernames.push(this.username)
+    
 
 
     this.gitfetchService.gitFetch(this.username)
