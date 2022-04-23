@@ -4,6 +4,7 @@ import { User } from '../user';
 import { GitfetchService } from '../services/gitfetch.service';
 import { RepofetchService } from '../services/repofetch.service';
 import { NgForm } from '@angular/forms';
+import { ausers } from '../ausers';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,7 @@ export class ProfileComponent implements OnInit {
   submitUser:any;
   repo:any;
   myrepos:any;
-  usernames:any[]= [];
+  //usernames:any[]= [];
   showProfile:boolean = false;
   showRepos:boolean = false;
 
@@ -87,7 +88,22 @@ export class ProfileComponent implements OnInit {
     //this.showRepos =! this.showRepos;
 
     this.hello = [];
-    this.usernames.push(this.username)
+    //this.usernames.push(this.username);
+    if (ausers.includes(this.username)===false) {
+      if (this.username != ''){
+        ausers.push(this.username);
+
+      }
+      else{
+        console.log('cannot')
+      }
+
+
+    }
+    else{
+      console.log('cannot')
+    }
+    
     
 
 

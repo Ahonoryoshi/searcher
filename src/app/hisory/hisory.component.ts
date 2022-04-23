@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AusersService } from '../services/ausers.service';
 
 @Component({
   selector: 'app-hisory',
@@ -9,7 +10,9 @@ export class HisoryComponent implements OnInit {
 
   usernames:any[]=[]
 
-  constructor() { }
+  constructor(ausersService:AusersService) {
+    this.usernames = ausersService.getAusers()
+   }
 
   ngOnInit(): void {
   }
